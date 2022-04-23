@@ -4,12 +4,59 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="x-ua-compatible" content="ie=edge" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css"
+      integrity="sha512-KfkfwYDsLkIlwQp6LFnl8zNdLGxu9YAA1QvwINks4PhcElQSvqcyVLLD9aMhXd13uQjoXtEKNosOWaZqXgel0g=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
     <!--To use htmlWebpackPlugi title uncomment bellow line-->
-    <!-- <title><%= htmlWebpackPlugin.options.title %></title> --> 
-    <title>VanilaJS WebPack Boilerplate</title>
+    <!-- <title><%= htmlWebpackPlugin.options.title %></title> -->
+    <title>Pomodoro Timer</title>
   </head>
 
   <body>
-    <div id="root"></div>
+    <div id="root">
+      <div id="container" class="container">
+        <div id="heading">Pomodoro Timer</div>
+        <div id="timer-screen">
+          <div id="time-counter" class="time-counter">25:00</div>
+          <div id="action-buttons">
+            <button id="play-pause-button" class="play-pause-button">
+              <i class="fa-solid fa-play"></i>
+              <!-- <i class="fa-solid fa-pause"></i> -->
+            </button>
+            <button id="reset-button" class="reset-button">
+              <i class="fa-solid fa-rotate-right"></i>
+            </button>
+          </div>
+        </div>
+        <div class="controls" id="controls">
+          <div class="break" id="break">
+            <span class="break-title" id="break-title"> Break Length </span>
+            <div class="break-controls" id="break-controls">
+              <button id="break-decrement" class="break-decrement">-</button>
+              <p class="break-length" id="break-length">15</p>
+              <button id="break-increment" class="break-increment">+</button>
+            </div>
+          </div>
+          <div class="session" id="session">
+            <span class="session-title" id="session-title">
+              Session Length
+            </span>
+            <div class="session-controls" id="session-controls">
+              <button id="session-decrement" class="session-decrement">
+                -
+              </button>
+              <p class="session-length" id="session-length">15</p>
+              <button id="session-increment" class="session-increment">
+                +
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
   </body>
 </html>
