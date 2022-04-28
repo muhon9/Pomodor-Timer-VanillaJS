@@ -4,8 +4,8 @@
 
 ## 🎯 About
 
-I started this mini project during my Webpack learning. Main google was to see how webpack builds it.
-As i am not comfortable making a modular app with Vanilla JS only i keept all the functionality in index file.
+I started this mini project during my Webpack learning. Main goal was to see how webpack builds it.
+As i am not comfortable making a modular app with Vanilla JS only i kept all the functionality in index file.
 Using only vanilla JS to write a mini fully functional app was fun
 
 ## Webpack
@@ -42,8 +42,10 @@ This will install all the necessary packages
 Runs the app in the development mode.\
 Open [http://localhost:8000](http://localhost:8000) to view it in the browser.
 
-The page will reload if you make edits.\
+The page will reload if you make edits.
 
 ### `npm build`
 
-Builds the app for production to the `dist` folder.\
+Builds the app for production to the `dist` folder.
+
+Use these dist folder to serve the app
