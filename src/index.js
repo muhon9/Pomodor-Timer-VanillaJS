@@ -3,7 +3,7 @@ import "@/styles/style.css";
 
 let timer;
 let sessionType = "session";
-let sessionLength = 0.5;
+let sessionLength = 25;
 let breakLength = 5;
 let time = 1500;
 let timerOn = false;
@@ -19,6 +19,14 @@ function displayCount() {
 function setTime(newTime) {
   time = newTime * 60;
   displayCount();
+}
+
+function setSessionLength() {
+  document.querySelector(".session-length").textContent = sessionLength;
+}
+
+function setBreakLength() {
+  document.querySelector(".break-length").textContent = breakLength;
 }
 
 function startTimer() {
@@ -59,6 +67,10 @@ function handlePlayPause() {
 
 function handleReset() {
   clearInterval(timer);
+  sessionLength = 25;
+  breakLength = 5;
+  setBreakLength();
+  setSessionLength();
   setTime(sessionLength);
   playPauseBtn.innerHTML = `<i class="fa-solid fa-play"></i>`;
   sessionType = "session";
@@ -68,28 +80,29 @@ function handleReset() {
 const counterDisplay = document.querySelector(".time-counter");
 const playPauseBtn = document.querySelector(".play-pause-button");
 const resetBtn = document.querySelector(".reset-button");
-const breakIncBtn = document.querySelector(".break-increment");
-const breakDecBtn = document.querySelector(".break-decrement");
-const sessionIncBtn = document.querySelector(".session-increment");
-const sessionDecBtn = document.querySelector(".session-decrement");
+const breakIncBtn = document.querySelector("#break-increment");
+const breakDecBtn = document.querySelector("#break-decrement");
+const sessionIncBtn = document.querySelector("#session-increment");
+const sessionDecBtn = document.querySelector("#session-decrement");
 
 playPauseBtn.addEventListener("click", handlePlayPause);
 resetBtn.addEventListener("click", handleReset);
 breakIncBtn.addEventListener("click", () => {
   breakLength++;
-  document.querySelector(".break-length").textContent = breakLength;
+  setBreakLength();
 });
+
 breakDecBtn.addEventListener("click", () => {
   breakLength--;
-  document.querySelector(".break-length").textContent = breakLength;
+  setBreakLength();
 });
 sessionIncBtn.addEventListener("click", () => {
   sessionLength++;
-  document.querySelector(".session-length").textContent = sessionLength;
+  setSessionLength();
   setTime(sessionLength);
 });
 sessionDecBtn.addEventListener("click", () => {
   sessionLength--;
-  document.querySelector(".session-length").textContent = sessionLength;
+  setSessionLength();
   setTime(sessionLength);
 });
