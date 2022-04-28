@@ -36,13 +36,13 @@ body {
   padding: 2.5em 2em;
 }
 
-#heading {
+.heading {
   color: var(--primary1);
   font-size: 1.2rem;
   font-weight: 900;
 }
 
-#timer-screen {
+.timer-screen {
   position: relative;
   display: flex;
   flex-direction: column;
@@ -55,12 +55,12 @@ body {
   border-radius: 50%;
 }
 
-#time-counter {
+.time-counter {
   font-size: 1.7rem;
   font-weight: 500;
 }
 
-#action-buttons {
+.action-buttons {
   color: var(--primary1);
   width: 100%;
   display: flex;
@@ -115,6 +115,10 @@ body {
 
 .controls button:hover {
   transform: scale(1.2);
+}
+
+.controls button:disabled {
+  color: #b2b2b2;
 }
 
 .break-title,
