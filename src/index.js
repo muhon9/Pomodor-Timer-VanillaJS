@@ -14,6 +14,7 @@ function displayCount() {
   counterDisplay.textContent = `${minutes}:${
     seconds > 9 ? seconds : "0" + seconds
   }`;
+  document.querySelector(".session-type").textContent = sessionType;
 }
 
 function setTime(newTime) {
@@ -45,12 +46,24 @@ function switchMode() {
   if (sessionType !== "break") {
     sessionType = "break";
     setTime(breakLength);
-    document.querySelector(".session-type").textContent = "Break";
   } else {
     sessionType = "session";
     setTime(sessionLength);
-    document.querySelector(".session-type").textContent = "Break";
   }
+}
+
+function disalbeControlBtns() {
+  sessionIncBtn.disabled = true;
+  sessionDecBtn.disabled = true;
+  breakIncBtn.disabled = true;
+  breakDecBtn.disabled = true;
+}
+
+function enableControlBtns() {
+  sessionIncBtn.disabled = false;
+  sessionDecBtn.disabled = false;
+  breakIncBtn.disabled = false;
+  breakDecBtn.disabled = false;
 }
 
 function handlePlayPause() {
@@ -58,8 +71,10 @@ function handlePlayPause() {
     clearInterval(timer);
     timerOn = false;
     playPauseBtn.innerHTML = `<i class="fa-solid fa-play"></i>`;
+    enableControlBtns();
   } else {
     startTimer();
+    disalbeControlBtns();
     timerOn = true;
     playPauseBtn.innerHTML = `<i class="fa-solid fa-pause"></i>`;
   }
@@ -71,9 +86,10 @@ function handleReset() {
   breakLength = 5;
   setBreakLength();
   setSessionLength();
-  setTime(sessionLength);
-  playPauseBtn.innerHTML = `<i class="fa-solid fa-play"></i>`;
   sessionType = "session";
+  setTime(sessionLength);
+  enableControlBtns();
+  playPauseBtn.innerHTML = `<i class="fa-solid fa-play"></i>`;
   timerOn = false;
 }
 
@@ -87,22 +103,32 @@ const sessionDecBtn = document.querySelector("#session-decrement");
 
 playPauseBtn.addEventListener("click", handlePlayPause);
 resetBtn.addEventListener("click", handleReset);
+
 breakIncBtn.addEventListener("click", () => {
-  breakLength++;
+  if (breakLength < 60) {
+    breakLength++;
+  }
   setBreakLength();
 });
 
 breakDecBtn.addEventListener("click", () => {
-  breakLength--;
+  if (breakLength > 0) {
+    breakLength--;
+  }
   setBreakLength();
 });
+
 sessionIncBtn.addEventListener("click", () => {
-  sessionLength++;
+  if (sessionLength < 60) {
+    sessionLength++;
+  }
   setSessionLength();
   setTime(sessionLength);
 });
 sessionDecBtn.addEventListener("click", () => {
-  sessionLength--;
+  if (sessionLength > 1) {
+    sessionLength--;
+  }
   setSessionLength();
   setTime(sessionLength);
 });
