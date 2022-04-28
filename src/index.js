@@ -2,7 +2,7 @@
 import "@/styles/style.css";
 
 let timer;
-let sessionType = "session";
+let sessionType = "Session";
 let sessionLength = 25;
 let breakLength = 5;
 let time = 1500;
@@ -43,11 +43,11 @@ function startTimer() {
 }
 
 function switchMode() {
-  if (sessionType !== "break") {
-    sessionType = "break";
+  if (sessionType !== "Break") {
+    sessionType = "Break";
     setTime(breakLength);
   } else {
-    sessionType = "session";
+    sessionType = "Session";
     setTime(sessionLength);
   }
 }
@@ -86,7 +86,7 @@ function handleReset() {
   breakLength = 5;
   setBreakLength();
   setSessionLength();
-  sessionType = "session";
+  sessionType = "Session";
   setTime(sessionLength);
   enableControlBtns();
   playPauseBtn.innerHTML = `<i class="fa-solid fa-play"></i>`;
