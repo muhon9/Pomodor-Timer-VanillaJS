@@ -1,13 +1,15 @@
-//Test import of styles. You can import Sass here if you use
+//importing stylesheet
 import "@/styles/style.css";
 
-let timer;
-let sessionType = "Session";
+//declaring needed variables
+let timer; // Defining the interval timer
 let sessionLength = 25;
 let breakLength = 5;
-let time = 1500;
-let timerOn = false;
+let time = 1500; // Converted the time in seconds to calculate easily
+let timerOn = false; // Timer is running or not
+let sessionType = "Session"; // Pomodoro session or break session is running
 
+//Function to display the couting time in dom
 function displayCount() {
   let minutes = Math.floor(time / 60);
   let seconds = (time % 60).toFixed(0);
@@ -17,21 +19,15 @@ function displayCount() {
   document.querySelector(".session-type").textContent = sessionType;
 }
 
+// Will receive the time, convert it to seconds and call the display function to change the DOM
 function setTime(newTime) {
   time = newTime * 60;
   displayCount();
 }
 
-function setSessionLength() {
-  document.querySelector(".session-length").textContent = sessionLength;
-}
-
-function setBreakLength() {
-  document.querySelector(".break-length").textContent = breakLength;
-}
-
+// Function to start the timer
 function startTimer() {
-  clearInterval(timer);
+  clearInterval(timer); //clear the timer if any exsist
   timer = setInterval(() => {
     if (time !== 0) {
       time--;
@@ -42,6 +38,7 @@ function startTimer() {
   }, 1000);
 }
 
+//function to switch mode from Pomodoro Session to Break and vise-versa
 function switchMode() {
   if (sessionType !== "Break") {
     sessionType = "Break";
@@ -52,6 +49,16 @@ function switchMode() {
   }
 }
 
+// Makes change in DOM after pressing Increment and Decrement button
+function setSessionLength() {
+  document.querySelector(".session-length").textContent = sessionLength;
+}
+
+function setBreakLength() {
+  document.querySelector(".break-length").textContent = breakLength;
+}
+
+// Disable all the control button (Ex: Session Increment, Break Decrement) when the timer is running
 function disalbeControlBtns() {
   sessionIncBtn.disabled = true;
   sessionDecBtn.disabled = true;
@@ -59,6 +66,7 @@ function disalbeControlBtns() {
   breakDecBtn.disabled = true;
 }
 
+// Enable the buttons when the timer is paused or stoped
 function enableControlBtns() {
   sessionIncBtn.disabled = false;
   sessionDecBtn.disabled = false;
@@ -66,6 +74,7 @@ function enableControlBtns() {
   breakDecBtn.disabled = false;
 }
 
+// Function to handle play and pause of the timer
 function handlePlayPause() {
   if (timerOn) {
     clearInterval(timer);
@@ -80,6 +89,7 @@ function handlePlayPause() {
   }
 }
 
+// these will reset all the variable to initial state when user press reset button
 function handleReset() {
   clearInterval(timer);
   sessionLength = 25;
@@ -93,6 +103,7 @@ function handleReset() {
   timerOn = false;
 }
 
+// Selecting elements
 const counterDisplay = document.querySelector(".time-counter");
 const playPauseBtn = document.querySelector(".play-pause-button");
 const resetBtn = document.querySelector(".reset-button");
@@ -101,6 +112,7 @@ const breakDecBtn = document.querySelector("#break-decrement");
 const sessionIncBtn = document.querySelector("#session-increment");
 const sessionDecBtn = document.querySelector("#session-decrement");
 
+// Assigning Event Listener
 playPauseBtn.addEventListener("click", handlePlayPause);
 resetBtn.addEventListener("click", handleReset);
 
@@ -125,6 +137,7 @@ sessionIncBtn.addEventListener("click", () => {
   setSessionLength();
   setTime(sessionLength);
 });
+
 sessionDecBtn.addEventListener("click", () => {
   if (sessionLength > 1) {
     sessionLength--;
