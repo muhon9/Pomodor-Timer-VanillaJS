@@ -2,6 +2,8 @@
 
 > A Pomodor Timer App using VanillaJS
 
+[![Pomodor-Timer.png](https://i.postimg.cc/PJ7BS9dq/Pomodor-Timer.png)](https://postimg.cc/D4qjZCJV)
+
 ## 🎯 About
 
 I started this mini project during my Webpack learning. Main goal was to see how webpack builds it.
